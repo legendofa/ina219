@@ -9,7 +9,7 @@ use hal::blocking::i2c;
 pub const INA219_ADDR: u8 = 0x41;
 
 enum Register {
-    // Configuration = 0x00,
+    //Configuration = 0x00,
     ShuntVoltage = 0x01,
     BusVoltage = 0x02,
     Power = 0x03,
@@ -29,6 +29,11 @@ impl<I2C, E> INA219<I2C>
             i2c,
             address
         }
+    }
+
+    pub fn write(&mut self, bytes: &[u8]) -> Result<(), E> {
+        self.i2c.write(self.address, bytes)?;
+        Ok(())
     }
 
     pub fn calibrate(&mut self, value: u16) -> Result<(), E> {
