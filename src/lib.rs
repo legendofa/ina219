@@ -9,7 +9,7 @@ use hal::blocking::i2c;
 pub const INA219_ADDR: u8 = 0x41;
 
 pub enum Register {
-    //Configuration = 0x00,
+    Configuration = 0x00,
     ShuntVoltage = 0x01,
     BusVoltage = 0x02,
     Power = 0x03,
