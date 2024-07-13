@@ -65,7 +65,7 @@ impl<I2C, E> INA219<I2C>
         Ok(value as i16)
     }
 
-    fn read(&mut self, register: Register) -> Result<u16, E> {
+    pub fn read(&mut self, register: Register) -> Result<u16, E> {
         let mut buf: [u8; 2] = [0x00; 2];
         self.i2c.write(self.address, &[register as u8])?;
         self.i2c.read(self.address, &mut buf)?;
